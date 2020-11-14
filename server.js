@@ -15,10 +15,16 @@ if (process.env.NODE_ENV === "production") {
 
 mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/google_books", { useNewUrlParser: true });
 // Define API routes here
-app.get("/api/books", (req, res) => {
-  res.send("cool")
-
+app.get("/api/books", async (req, res) => {
+  try{
+    const books = await Books.find();
+    res.status(200).send(books)
+  } catch(error) {
+    console.log(error)
+    res.status(500).end();
+  }
 })
+
 app.delete("/api/books/:id", async (req, res) => {
   try {
     const deletedBook = await Books.deleteOne({_id: mongoose.Types.ObjectId(req.params.id)});

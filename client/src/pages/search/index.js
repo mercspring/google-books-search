@@ -22,28 +22,29 @@ export default function Search() {
                 filtered.title = elm.volumeInfo.title;
                 filtered.authors = elm.volumeInfo.authors || ["unkown"];
                 filtered.description = elm.volumeInfo.description;
-                filtered.image = elm.volumeInfo.imageLinks ? elm.volumeInfo.imageLinks.thumbnail :"https://via.placeholder.com/150/100"
+                filtered.image = elm.volumeInfo.imageLinks ? elm.volumeInfo.imageLinks.thumbnail : "https://via.placeholder.com/150/100"
                 filtered.link = elm.volumeInfo.infoLink;
                 filtered.index = index;
                 return filtered
-            
+
             });
             console.log(filteredResults)
             setSearchResults(filteredResults);
         });
 
     }
-        const saveFavorite = (index) => {
-            console.log("data to save", searchResults[index]);
-            API.saveBook(searchResults[index]).then(result => {
-                console.log(result)
-            }).catch(err => {
-                console.log(err)
-            })
-        }
-        const saveViewBook = (link) => {
-            window.open(link, '_blank');
-        }
+    const saveFavorite = (index) => {
+        console.log("data to save", searchResults[index]);
+        API.saveBook(searchResults[index]).then(result => {
+            console.log(result)
+        }).catch(err => {
+            console.log(err)
+        })
+    }
+    const viewBook = (link) => {
+        window.open(link, '_blank');
+    }
+
     return (
         <div>
             <Row>
@@ -51,6 +52,7 @@ export default function Search() {
                 <Col m={6}>
                     <form>
                         <input
+                            style={{height: "35px", marginRight: "5px", background:"black", borderColor:"#26dafd", color:"#26dafd"}}
                             type="text"
                             placeholder="Enter a book name"
                             name="search"
@@ -61,8 +63,8 @@ export default function Search() {
                     </form>
                     <div className="result-list">
                         {searchResults ? searchResults.map(elm => {
-                            return <Card page="search" key={elm.index} saveFavorite={saveFavorite} saveViewBook={saveViewBook} title={elm.title} authors={elm.authors} description={elm.description} image={elm.image} link={elm.link} index={elm.index} />
-                        }): <h2>No Results</h2>}
+                            return <Card page="search" key={elm.index} saveFavorite={saveFavorite} viewBook={viewBook} title={elm.title} authors={elm.authors} description={elm.description} image={elm.image} link={elm.link} index={elm.index} />
+                        }) : <h2>No Results</h2>}
                     </div>
                 </Col>
                 <Col m={1}></Col>
