@@ -1,5 +1,5 @@
 import React from "react";
-import { ThemeProvider, Arwes, createTheme, Content} from "arwes";
+import { ThemeProvider, Arwes, createTheme, Content, Puffs } from "arwes";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Search from "./pages/search/"
 import Saved from "./pages/saved/"
@@ -14,7 +14,9 @@ function App() {
         <Content>
           <div className="App">
             <Router>
-              <Nav />
+              <Puffs>
+                <Nav />
+              </Puffs>
               <Switch>
                 <Route exact path={["/", "/search"]}>
                   <Search />
@@ -25,7 +27,6 @@ function App() {
                 <Route >
                   <h1>404</h1>
                 </Route>
-
               </Switch>
             </Router>
           </div>
