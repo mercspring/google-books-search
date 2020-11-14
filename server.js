@@ -16,6 +16,7 @@ if (process.env.NODE_ENV === "production") {
 mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/google_books", { useNewUrlParser: true });
 // Define API routes here
 app.get("/api/books", (req, res) => {
+  res.send("cool")
 
 })
 app.delete("/api/books/:id", async (req, res) => {

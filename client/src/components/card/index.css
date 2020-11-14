@@ -1,5 +1,7 @@
 img{
-    float: left;
+    /* float: left; */
+    height: 100;
+    width: auto;
 }
 h4{
     margin-bottom: 0 !important;
@@ -7,4 +9,9 @@ h4{
 }
 .Card > p{
 padding-left: 3px;
+}
+button{
+    /* width:50 !important; */
+    font-size: 10pt !important;
+    padding: 10px 15px  !important;
 }

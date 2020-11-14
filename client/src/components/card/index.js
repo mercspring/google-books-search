@@ -9,21 +9,25 @@ export default function Card(props) {
                 <Col m={8}>
                 </Col>
                 <Col m={4}>
-                    <Button onClick={() => props.saveFavorite(props.index)}>
-                        Save
-                    </Button>
-                    <Button onClick={() => props.saveViewBook(props.link)}>
-                        View
-                    </Button>
                 </Col>
 
             </Row>
             <Row>
-                <Col s={3} >
+                <Col s={4} >
+
 
                     <img src={props.image} alt="thumbnail" />
+                    {props.page = "search" ? <Button onClick={() => props.saveFavorite(props.index)}>
+                        Save
+                    </Button> : <Button onClick={() => props.deleteFavorite(props.index)}>
+                            Delete
+                    </Button>}
+
+                    <Button onClick={() => props.saveViewBook(props.link)}>
+                        View
+                    </Button>
                 </Col>
-                <Col s={9}>
+                <Col s={8}>
                     <Heading node='h4'>{props.title}</Heading>
                     {props.authors.map((elm, index) => {
                         return <span key={index}>{elm} </span>

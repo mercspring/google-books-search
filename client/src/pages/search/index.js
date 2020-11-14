@@ -6,6 +6,7 @@ import Card from '../../components/card/';
 export default function Search() {
     const [search, setSearch] = useState("");
     const [searchResults, setSearchResults] = useState([]);
+
     const onSearchSubmit = (event) => {
         event.preventDefault();
         API.searchBooks(search).then(response => {
@@ -21,8 +22,7 @@ export default function Search() {
                 filtered.title = elm.volumeInfo.title;
                 filtered.authors = elm.volumeInfo.authors || ["unkown"];
                 filtered.description = elm.volumeInfo.description;
-                filtered.image = elm.volumeInfo.imageLinks.thumbnail || "https://via.placeholder.com/50"
-                // elm.volumeInfo.imageLinks.thumbnail || 
+                filtered.image = elm.volumeInfo.imageLinks ? elm.volumeInfo.imageLinks.thumbnail :"https://via.placeholder.com/150/100"
                 filtered.link = elm.volumeInfo.infoLink;
                 filtered.index = index;
                 return filtered
@@ -34,15 +34,20 @@ export default function Search() {
 
     }
         const saveFavorite = (index) => {
-            console.log(index)
+            console.log("data to save", searchResults[index]);
+            API.saveBook(searchResults[index]).then(result => {
+                console.log(result)
+            }).catch(err => {
+                console.log(err)
+            })
         }
         const saveViewBook = (link) => {
-            console.log(link)
+            window.open(link, '_blank');
         }
     return (
         <div>
             <Row>
-                <Col m={3}></Col>
+                <Col m={1}></Col>
                 <Col m={6}>
                     <form>
                         <input
@@ -56,11 +61,11 @@ export default function Search() {
                     </form>
                     <div className="result-list">
                         {searchResults ? searchResults.map(elm => {
-                            return <Card key={elm.index} saveFavorite={saveFavorite} saveViewBook={saveViewBook} title={elm.title} authors={elm.authors} description={elm.description} image={elm.image} link={elm.link} index={elm.index} />
+                            return <Card page="search" key={elm.index} saveFavorite={saveFavorite} saveViewBook={saveViewBook} title={elm.title} authors={elm.authors} description={elm.description} image={elm.image} link={elm.link} index={elm.index} />
                         }): <h2>No Results</h2>}
                     </div>
                 </Col>
-                <Col m={3}></Col>
+                <Col m={1}></Col>
             </Row>
 
             <div>
