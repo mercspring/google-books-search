@@ -17,13 +17,13 @@ export default function Card(props) {
 
 
                     <img src={props.image} alt="thumbnail" />
-                    {props.page === "search" ? <Button onClick={() => props.saveFavorite(props.index)}>
+                    {props.page === "search" ? <Button animate onClick={() => props.saveFavorite(props.index)}>
                         Save
-                    </Button> : <Button onClick={() => props.deleteFavorite(props.id)}>
+                    </Button> : <Button animate onClick={() => props.deleteFavorite(props.id)}>
                             Delete
                     </Button>}
 
-                    <Button onClick={() => props.viewBook(props.link)}>
+                    <Button animate onClick={() => props.viewBook(props.link)}>
                         View
                     </Button>
                 </Col>
