@@ -1,0 +1,10 @@
+img{
+    float: left;
+}
+h4{
+    margin-bottom: 0 !important;
+    text-align: left;
+}
+.Card > p{
+padding-left: 3px;
+}
